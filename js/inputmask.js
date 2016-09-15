@@ -2467,8 +2467,11 @@
                 var $input = $(this),
                     input = this;
                 if (input.inputmask) {
-                    var nptValue = input.inputmask._valueGet(),
+                    var nptValue,
                         buffer = getBuffer().slice();
+
+                    writeBuffer(input, buffer, undefined, e);
+                    nptValue = input.inputmask._valueGet();
 
                     if (nptValue !== "") {
                         if (opts.clearMaskOnLostFocus) {
@@ -2492,7 +2495,7 @@
                             }
                         }
 
-                        writeBuffer(input, buffer, undefined, e);
+                        writeBuffer(input, buffer);
                     }
 
                     if (undoValue !== getBuffer().join("")) {
